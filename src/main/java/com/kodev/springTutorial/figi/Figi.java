@@ -14,7 +14,22 @@ package com.kodev.springTutorial.figi;
 */
 
 
+
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Figi {
+    @Id
+    @SequenceGenerator(
+            name = "figi_sequence",
+            sequenceName = "figi_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "figi_sequence"
+    )
     private Long id;
     private String figiFullName;
     private String securityType;
