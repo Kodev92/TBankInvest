@@ -1,5 +1,6 @@
 package com.kodev.springTutorial.figi;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -8,21 +9,14 @@ import java.util.List;
 @Service
 public class FigiService {
 
+    private final FigiRepository figiRepository;
+
+    @Autowired
+    public FigiService(FigiRepository figiRepository) {
+        this.figiRepository = figiRepository;
+    }
 
     public List<Figi> getFigi(){
-        return List.of(
-                new Figi(
-                        1L,
-                        "BBG000BLNNH6",
-                        "Common Stock",
-                        "Equity",
-                        "IBM",
-                        "INTL BUSINESS MACHINES CORP",
-                        "US",
-                        "BBG001S5S399",
-                        "BBG000BLNNH6",
-                        "Common Stock",
-                        "IBM"
-                ));
+        return figiRepository.findAll();
     }
 }
